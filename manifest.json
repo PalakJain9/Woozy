@@ -1,11 +1,13 @@
 {
     "name": "Woozy",
     "version": "0.0.1",
-    "description": "Your daily water reminder",
-    "permissions": ["activeTab"],
+    "description": "Your drink water reminder",
     "action": {
         "default_title": "Woozy",
         "default_popup": "popup.html"
+    },
+    "background": {
+        "script": ["background.js"]
     },
     "manifest_version": 3
 }
