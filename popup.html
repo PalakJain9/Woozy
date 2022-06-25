@@ -4,9 +4,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Woozy</title>
 </head>
 <body>
-    <p>Add time interval</p>
+    <div class="message">
+        <p>Your drink water reminder</p>
+        <p>Sit back & get to work, I'll take care of your <span id="highlight">hydration & health</span>!</p>
+    </div>
+    <label for="timeInput">Add time interval (in minutes)</label>
+    <input type="number" id="time" name="timeInput">
+    <div class="buttons">
+        <button id="start">set reminder</button>
+        <button id="stop">stop</button>
+    </div>
 </body>
 </html>
