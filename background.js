@@ -1,39 +1,12 @@
-console.log("hello");
+console.log("in background js");
+let alarmTime = 1.0;
 
-/*chrome.action.onClicked.addListener(buttonClicked);
-function buttonClicked(){
-    console.log("button clicked");
-    chrome.windows.create({
-        url: chrome.runtime.getURL("popup.html"),
-        type: "popup"
-    }); 
-}
+chrome.runtime.onMessage.addListener(
+    function(request, sender, sendResponse) {
+      console.log(request.time + " background.js");
+      alarmTime = request.time * 1.0;
+      //createAlarm();
+      sendResponse({success: true});
+});
 
-let isBtnClicked = false;
-let timer = 0;
-let default_msg = document.getElementById("default_msg");
-let reminder_msg = document.getElementById("reminder");
-let btn_setReminder = document.getElementById("start");
-btn_setReminder.addEventListener('click', updateValue());
-
-const updateValue = () => {
-    isBtnClicked = true;
-}
-
-const getValue = (val) => {
-    let time = val.value;
-    if(isBtnClicked == true) runTimer(time);
-}
-
-const runTimer = (time) => {
-    if(timer == time) displayReminder();
-    ++timer;
-    console.log(timer);
-} 
-setTimeout(runTimer,60000);
-
-const displayReminder = () => {
-    default_msg.style.display = "none";
-}
-*/
-
+chrome.alarms.create("drink water", {delayInMinutes: alarmTime})

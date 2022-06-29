@@ -2,6 +2,7 @@
     "name": "Woozy",
     "version": "0.0.1",
     "description": "Your drink water reminder",
+    "permissions": ["alarms"],
     "background": {
         "service_worker": "background.js"
     },
