@@ -5,8 +5,10 @@ chrome.runtime.onMessage.addListener(
     function(request, sender, sendResponse) {
       console.log(request.time + " background.js");
       alarmTime = request.time * 1.0;
-      //createAlarm();
+      createAlarm();
       sendResponse({success: true});
 });
 
-chrome.alarms.create("drink water", {delayInMinutes: alarmTime})
+function createAlarm(){
+  chrome.alarms.create("drink water", {delayInMinutes: alarmTime});
+}
