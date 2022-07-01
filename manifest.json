@@ -6,6 +6,12 @@
     "background": {
         "service_worker": "background.js"
     },
+    "icons": {
+        "128":"./assets/leaves.jpg",
+        "64":"./assets/leaves.jpg",
+        "32": "./assets/leaves.jpg",
+        "16":"./assets/leaves.jpg"
+    },
     "action": {
         "default_title": "Woozy",
         "default_popup": "popup.html"

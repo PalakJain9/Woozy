@@ -14,14 +14,16 @@ chrome.alarms.onAlarm.addListener(
   function(alarm){
     //console.log(alarm.name);
     console.log(alarm);
-    chrome.notifications.create("your drink water notification",{
-        type: "basic",
+    let str = "my-notification-" + Date.now() + "-";
+    chrome.notifications.create(str, {
         iconUrl: "./assets/leaves.jpg",
-        title: "your drink water notification",
-        message: "Time to take a sip of water"
+        type: "basic",
+        title: "drink water",
+        priority: 1,
+        message: "your drink water notification"
       },
-      function(notificationID){
-        console.log("notification displayed");
+      function(notificationId){
+        console.log(notificationId);
       }
     )
 });
@@ -29,3 +31,4 @@ chrome.alarms.onAlarm.addListener(
 function createAlarm(){
   chrome.alarms.create("drink water", {delayInMinutes: alarmTime});
 }
+createAlarm();
