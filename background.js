@@ -18,9 +18,9 @@ chrome.alarms.onAlarm.addListener(
     chrome.notifications.create(str, {
         iconUrl: "./assets/leaves.jpg",
         type: "basic",
-        title: "drink water",
+        title: "Drink Water",
         priority: 1,
-        message: "your drink water notification"
+        message: "Time to take a sip of water"
       },
       function(notificationId){
         console.log(notificationId);
@@ -30,5 +30,5 @@ chrome.alarms.onAlarm.addListener(
 
 function createAlarm(){
   chrome.alarms.create("drink water", {delayInMinutes: alarmTime});
+  alarmTime = 0.0;
 }
-createAlarm();

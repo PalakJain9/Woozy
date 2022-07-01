@@ -19,3 +19,8 @@ create notification
 notificationId, NotificationOptions, callback function
 inside NotificationOptions, we need 4 properties compulsorily to be included:
 type, iconUrl, title, message
+
+# NOTE:
+while working with notification, few important pointers to note:
+* check if notifications are turned on in your system. Check in settings.
+* sometimes, notifications come for once only. This is because the notificationId requires unique parameter sometimes. So you may use Date.now() method to make it unique
