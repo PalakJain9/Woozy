@@ -30,5 +30,5 @@ chrome.alarms.onAlarm.addListener(
 
 function createAlarm(){
   chrome.alarms.create("drink water", {delayInMinutes: alarmTime});
-  alarmTime = 0.0;
+  //alarmTime = 0.0;
 }
