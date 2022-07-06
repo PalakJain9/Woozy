@@ -1,4 +1,5 @@
 let btn_start = document.getElementById("start");
+let btn_stop = document.getElementById("stop");
 let temp;
 let time_prd;
 
@@ -21,30 +22,40 @@ function remind(){
 }
 btn_start.addEventListener('click', remind);
 
-const alarmRunning = (time) => {
-    document.getElementById("stop").style.display = "flex";
-    document.getElementById("time_label").style.display = "none";
-    document.getElementById("time").style.display = "none";
-    btn_start.style.display = "none";
-    temp = time;
-    document.getElementById("running").innerHTML = "Alarm running, time remaining: " + temp + " mins";
-    time_prd = setInterval(getTime, 60000);
-}
-
-const getTime = () => {
-    if (Math.ceil(temp) != 0) {
-        --temp;
-        document.getElementById("running").innerHTML = "Alarm running, time remaining: " + temp + " mins";
-    }
-    else {
-        clearInterval(time_prd);
-    }
-}
-
 const startAllOver = () => {
-    document.getElementById("stop").style.display = "none";
+    console.log("inside startAllOver function");
+    btn_stop.style.display = "none";
     document.getElementById("time_label").style.display = "flex";
     document.getElementById("time").style.display = "flex";
     btn_start.style.display = "flex";
+    document.getElementById("running").style.display = "none";
     temp = 0;
 }
+
+const getTime = () => {
+    if(temp != 0) {
+        --temp;
+        document.getElementById("running").innerHTML = "Reminder in: " + Math.round((temp/60) * 10)/10 + " mins";
+    }
+    else {
+        clearInterval(time_prd);
+        console.log("interval cleared");
+        startAllOver();
+    }
+}
+
+const alarmRunning = (time) => {
+    btn_stop.style.display = "flex";
+    document.getElementById("time_label").style.display = "none";
+    document.getElementById("time").style.display = "none";
+    btn_start.style.display = "none";
+    temp = time * 60;
+    document.getElementById("running").innerHTML = "Reminder in: " + Math.round((temp/60) * 10)/10 + " mins";
+    time_prd = setInterval(getTime, 1000);
+}
+
+/*function stopAlarm(){
+
+}
+
+btn_start.addEventListener('click', stopAlarm);*/
