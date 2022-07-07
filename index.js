@@ -2,25 +2,8 @@ let btn_start = document.getElementById("start");
 let btn_stop = document.getElementById("stop");
 let temp;
 let time_prd;
-
-function remind(){
-    const time = document.getElementById("time").value;
-    let error_msg = document.getElementById("error_msg");
-    //create reminder for specified time
-    if(time != ''){
-        error_msg.style.display = "none";
-        /*document.getElementById("time").value = ''; doing this, because the input field contained the last input value, hence repetitive alarms were scheduled */
-        chrome.runtime.sendMessage({time}, function(response) {
-            console.log(response);
-        });
-        alarmRunning(time);
-    }
-    else {
-        error_msg.style.display = "flex";
-        error_msg.innerHTML = "Please enter time";
-    }
-}
-btn_start.addEventListener('click', remind);
+let isReminder;
+let isStopped;
 
 const startAllOver = () => {
     console.log("inside startAllOver function");
@@ -54,8 +37,45 @@ const alarmRunning = (time) => {
     time_prd = setInterval(getTime, 1000);
 }
 
-/*function stopAlarm(){
-
+function messagePass(){
+    let msg = "set-alarm";
+    const time = document.getElementById("time").value;
+    if(isReminder == true && isStopped == false){
+        let error_msg = document.getElementById("error_msg");
+        //create reminder for specified time
+        if(time != ''){
+            error_msg.style.display = "none";
+            /*document.getElementById("time").value = ''; doing this, because the input field contained the last input value, hence repetitive alarms were scheduled */
+            chrome.runtime.sendMessage({time}, function(response) {
+                console.log(response);
+            });
+            alarmRunning(time);
+        }
+        else {
+            error_msg.style.display = "flex";
+            error_msg.innerHTML = "Please enter time";
+        }
+    }
+    else {
+        msg = "stop-alarm";
+        chrome.runtime.sendMessage({msg}, function(response){
+            console.log(response);
+        });
+    }
 }
 
-btn_start.addEventListener('click', stopAlarm);*/
+function remind(){
+    isReminder = true;
+    isStopped = false;
+    messagePass();
+}
+btn_start.addEventListener('click', remind);
+
+function stopReminder(){
+    isReminder = false;
+    isStopped = true;
+    messagePass();
+    startAllOver();
+}
+
+btn_stop.addEventListener('click', stopReminder);
