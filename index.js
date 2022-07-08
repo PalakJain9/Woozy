@@ -12,6 +12,7 @@ const startAllOver = () => {
     document.getElementById("time").style.display = "flex";
     btn_start.style.display = "flex";
     document.getElementById("running").style.display = "none";
+    document.getElementById("loader").style.display = "none";
     temp = 0;
 }
 
@@ -34,6 +35,7 @@ const alarmRunning = (time) => {
     btn_start.style.display = "none";
     temp = time * 60;
     document.getElementById("running").innerHTML = "Reminder in: " + Math.round((temp/60) * 10)/10 + " mins";
+    document.getElementById("loader").style.display = "block";
     time_prd = setInterval(getTime, 1000);
 }
 

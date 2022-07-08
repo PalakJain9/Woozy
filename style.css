@@ -10,7 +10,7 @@
 }
 
 body {
-    width: 13rem;
+    width: 15rem;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -80,4 +80,15 @@ button {
 
 #stop {
     display: none;
+}
+
+#loader {
+    display: none;
+}
+
+.alarmRunning {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    align-items: center;
 }
